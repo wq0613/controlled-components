@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Paste from Word</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.js"></script>
+</head>
+
+<body>
+
+
+<div id="editor">
+</div>
+
+<script  type="text/babel">
+	function InputNumber(props){
+		const { defaultValue,value } = props
+		if(typeof value !== "undefined"  ){
+			const [_value,_setValue] = React.useState(value)
+			return (
+				<input  value={_value} onChange={e=>_setValue(e.target.value)}  />
+			
+			)
+		}else if (typeof defaultValue !== "undefined"){
+			const inputEl = React.useRef(null);
+			function setValue (val){
+				inputEl.current.value = val;
+			}
+			return (
+				<input  defaultValue={defaultValue} ref={inputEl} onChange={e=>setValue(e.target.value)}  />
+			)
+		}
+	}
+	
+	function App(){
+	    const [value,setValue] = React.useState('aaa')
+		
+	    return (
+	        <div>
+	        <InputNumber value={value} onChange={e=>{}}/>
+			<br/>
+	        <InputNumber defaultValue={value}  onChange={e=>{}}/>
+	        </div>
+	    )
+	}
+	ReactDOM.render(<App/>, document.getElementById('editor'));
+</script>
+
+</body>
+
+</html>
